@@ -1,5 +1,3 @@
-#from qiskit.providers.aer import Aer
-
 from qiskit import Aer, IBMQ
 from qiskit.circuit.library import TwoLocal
 from qiskit.algorithms import VQE
@@ -12,11 +10,11 @@ from qiskit_nature.algorithms import GroundStateEigensolver
 from qiskit_nature.transformers import FreezeCoreTransformer
 from qiskit.utils import QuantumInstance
 
-# Load IBMQ account for real quantum hardware (optional, requires IBMQ credentials)
-# Uncomment if you want to run on real quantum devices, requires an IBMQ account
+# Load IBMQ account to use a real quantum computer (optional)
+# Uncomment below if you want to run on real quantum hardware
 # IBMQ.load_account()
 # provider = IBMQ.get_provider(hub='ibm-q')
-# backend = provider.get_backend('ibmq_manila')  # Choose a real quantum device
+# backend = provider.get_backend('ibmq_manila')
 
 # Define the molecular structure (H2 molecule)
 driver = PySCFDriver(atom='H .0 .0 .0; H .0 .0 0.735', unit='Angstrom', charge=0, spin=0, basis='sto3g')
@@ -44,7 +42,7 @@ result_simulator = ground_state_solver_simulator.solve(problem)
 # Print the calculated ground state energy (simulator)
 print(f"Calculated Ground State Energy (Simulator): {result_simulator.total_energies[0].real} Hartree")
 
-# Optional: Uncomment the following to run on a real quantum computer
+# Optional: Run on real quantum hardware
 # quantum_instance_real = QuantumInstance(backend=backend)
 # vqe_real = VQE(ansatz, optimizer, quantum_instance=quantum_instance_real)
 # ground_state_solver_real = GroundStateEigensolver(qubit_converter, vqe_real)
